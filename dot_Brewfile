@@ -1,0 +1,6 @@
+brew "chezmoi"
+brew "coreutils"
+brew "eza"
+brew "neovim"
+cask "raycast"
+cask "warp"

@@ -1,0 +1,161 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+### Added by Zinit's installer
+if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
+    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
+        print -P "%F{33} %F{34}Installation successful.%f%b" || \
+        print -P "%F{160} The clone has failed.%f%b"
+fi
+
+source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+autoload -U +X bashcompinit && bashcompinit
+autoload -U +X compinit && compinit
+
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-bin-gem-node \
+    zdharma-continuum/zinit-annex-patch-dl \
+    zdharma-continuum/zinit-annex-rust
+
+### End of Zinit's installer chunk
+
+# Powerlevel10k
+zinit ice depth=1; zinit light romkatv/powerlevel10k
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+
+# Plugins
+zinit ice wait lucid
+zinit snippet OMZP::pip
+
+zinit ice wait lucid
+zinit snippet OMZP::sudo
+
+zinit ice wait lucid
+zinit snippet OMZP::rust
+
+zinit ice wait lucid
+zinit snippet OMZP::npm
+
+zinit ice wait lucid
+zinit snippet OMZP::poetry
+
+zinit ice wait lucid atload'_zsh_autosuggest_start; bindkey "^ " autosuggest-accept'
+zinit light zsh-users/zsh-autosuggestions
+
+zinit ice wait lucid
+zinit light ofirgall/cd-to-git
+
+if [[ ${ZSH_VERSION:0:3} -ge 5.8 ]]; then
+	zinit ice wait lucid
+	zinit light Aloxaf/fzf-tab
+fi
+
+zinit ice wait lucid
+zinit light paulirish/git-open
+
+zinit ice wait lucid
+zinit light peterhurford/up.zsh
+
+# zsh-completions
+zinit wait lucid atload"zicompinit; zicdreplay" blockf for \
+    zsh-users/zsh-completions
+
+zinit ice wait lucid
+zinit light hlissner/zsh-autopair
+
+# Aliases
+alias sftp="with-readline sftp"
+alias vim="nvim"
+alias pwdc='echo \"$(pwd)\" | tr -d "\n" | toclip'
+alias pwdcd='echo "cd \"$(pwd)\"" | toclip'
+alias ga='git add'
+alias gc='git commit'
+alias gcm='git commit -m'
+alias gcam='git commit -a -m'
+alias gco='git checkout'
+alias gd='git diff'
+alias gf='git fetch'
+alias gl='git pull'
+alias gp='git push'
+alias gs='git status'
+alias gst='git status'
+alias gcp='git cherry-pick'
+alias gcpa='git cherry-pick --abort'
+alias gcpc='git cherry-pick --continue'
+alias ghi='git hist'
+alias gdiff='git diff'
+alias gshow='git show'
+alias grim='git rebase -i origin/master'
+alias groot='cd $(git rev-parse --show-toplevel)'
+alias gbn="git rev-parse --abbrev-ref HEAD"
+alias cgbn="git rev-parse --abbrev-ref HEAD | pbcopy"
+alias ll="eza -alF --icons"
+alias gpc="gh pr create"
+alias gpv="gh pr view --web"
+alias gpvc="gh pr view | egrep \"url:\" | head -n 1 | sed \"s/url://g\" | xargs echo -n | pbcopy"
+alias gpar="gh pr edit --add-reviewer"
+alias gsu="git submodule update --init --recursive --remote"
+alias file="magika"
+alias j="jira"
+alias gg="go generate ./..."
+alias gmt="go mod tidy"
+alias pm="prisma migrate dev --name"
+alias pmd="prisma migrate dev --create-only --name"
+alias export_aws_env='eval "$(aws configure export-credentials --format env)"'
+alias export_aws_env_admin='eval "$(aws configure export-credentials --format env --profile AdministratorAccess-539597120499)"'
+
+# Functions
+function csqs() {
+  aws sqs get-queue-url --queue-name $1.fifo --query QueueUrl --output text | xargs -I {} aws sqs purge-queue --queue-url {}
+}
+
+function pgit() {
+  ssh-add -D
+  ssh-add ~/.ssh/id_rsa_github_avivatedgi
+}
+
+function wgit() {
+  ssh-add -D
+  ssh-add ~/.ssh/id_rsa_github_statement
+}
+
+function cgv() {
+  go env -w GOTOOLCHAIN=go$1
+}
+
+# Path Variables
+export PATH="/opt/homebrew/bin/":"$PATH"
+export PATH="$PATH":"$HOME/go/bin"
+export PATH="$PATH":"$HOME/bin"
+
+# Golang Settings
+export PATH=$PATH:/usr/local/go/bin
+
+# Cargo Settings
+export PATH=$PATH:$HOME/.cargo/bin
+
+# Makefiles target auto-completions
+zstyle ':completion:*:*:make:*' tag-order 'targets'
+autoload -U compinit && compinit
+
+# Kubectl autocompletions & Krew config
+source <(kubectl completion zsh)
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+alias k=kubectl
+complete -o default -F __start_kubectl k
+
