@@ -25,7 +25,7 @@ warn() {
 # ----------------------------------------
 # Install xcode-select
 # ----------------------------------------
-xcode-select --install
+xcode-select --install &>/dev/null || true
 
 # ----------------------------------------
 # Install Homebrew
@@ -66,22 +66,50 @@ else
 fi
 
 # ----------------------------------------
+# Apply dotfiles
+# ----------------------------------------
+info "Applying chezmoi configuration..."
+chezmoi apply -v
+
+# ----------------------------------------
 # Install Brewfile (if it exists)
 # ----------------------------------------
 if [[ -f "$HOME/.Brewfile" ]]; then
   info "Installing brew packages from Brewfile..."
   brew bundle --global
+  brew cleanup
 elif [[ -f "$DOTFILES_DIR/dot_Brewfile" ]]; then
   info "Installing brew packages from chezmoi-managed Brewfile..."
   brew bundle --file="$DOTFILES_DIR/dot_Brewfile"
+  brew cleanup
 else
   warn "No Brewfile found; skipping brew package installation."
 fi
 
-# ----------------------------------------
-# Apply dotfiles
-# ----------------------------------------
-info "Applying chezmoi configuration..."
-chezmoi apply -v
+# ---------------------------------------
+# Install Rust
+# ---------------------------------------
+if ! command_exists rustc; then
+  info "Installing rust..."
+  rustup-init
+else
+  info "rust is already installed."
+fi
+
+# --------------------------------------
+# Installing Python Dependencies
+# --------------------------------------
+info "Installing python dependencies..."
+python3 -m pip install --break-system-packages ipython pipx
+python3 -m pipx install black
+
+# --------------------------------------
+# Installing npm Dependencies
+# --------------------------------------
+info "Installing npm dependencies..."
+npm install -g npm@latest
+npm install -g npx -f
+npm install -g n -f
+sudo n stable
 
 info "✅ Setup complete!"
