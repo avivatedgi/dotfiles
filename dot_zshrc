@@ -126,12 +126,16 @@ function csqs() {
 
 function pgit() {
   ssh-add -D
-  ssh-add ~/.ssh/id_rsa_github_avivatedgi
+  ssh-add ~/.ssh/id_personal_rsa_github
+  git config --global user.name "Aviv Atedgi"
+  git config --global user.email "aviv@atedgi.com"
 }
 
 function wgit() {
   ssh-add -D
-  ssh-add ~/.ssh/id_rsa_github_statement
+  ssh-add ~/.ssh/id_work_rsa_github
+  git config --global user.name "Aviv Atedgi"
+  git config --global user.email "aviv.atedgi@foo.com"
 }
 
 function cgv() {
