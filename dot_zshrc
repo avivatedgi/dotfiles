@@ -80,7 +80,7 @@ zinit light hlissner/zsh-autopair
 
 # Aliases
 alias sftp="with-readline sftp"
-alias vim="nvim"
+w="nvim"
 alias pwdc='echo \"$(pwd)\" | tr -d "\n" | toclip'
 alias pwdcd='echo "cd \"$(pwd)\"" | toclip'
 alias ga='git add'
