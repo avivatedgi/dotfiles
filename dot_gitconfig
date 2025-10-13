@@ -4,11 +4,11 @@
 [push]
 	autoSetupRemote = true
 
-[includeIf "gitdir:~/Work/"]
+[includeIf "gitdir:/Users/aviv/Work/"]
     path = ~/.gitconfig-work.inc
 
-[includeIf "gitdir:~/Personal/"]
+[includeIf "gitdir:/Users/aviv/Personal/"]
     path = ~/.gitconfig-personal.inc
 
-[includeIf "gitdir:~/.local/share/chezmoi"]
+[includeIf "gitdir:/Users/aviv/.local/share/chezmoi/"]
     path = ~/.gitconfig-personal.inc

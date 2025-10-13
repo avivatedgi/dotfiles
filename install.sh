@@ -142,4 +142,14 @@ if ! command_exists govulncheck; then
   go install golang.org/x/vuln/cmd/govulncheck@latest
 fi
 
+# --------------------------------------
+# Fix Git Config File
+# --------------------------------------
+info "Updating .gitconfig file to current user"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  sed -i '' "s|/Users/aviv|${HOME}|g" "$HOME/.gitconfig"
+else
+  sed -i "s|/Users/aviv|${HOME}|g" "$HOME/.gitconfig"
+fi
+
 info "✅ Setup complete!"
