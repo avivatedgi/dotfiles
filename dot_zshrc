@@ -117,25 +117,10 @@ alias gmt="go mod tidy"
 alias pm="prisma migrate dev --name"
 alias pmd="prisma migrate dev --create-only --name"
 alias export_aws_env='eval "$(aws configure export-credentials --format env)"'
-alias export_aws_env_admin='eval "$(aws configure export-credentials --format env --profile AdministratorAccess-539597120499)"'
 
 # Functions
 function csqs() {
   aws sqs get-queue-url --queue-name $1.fifo --query QueueUrl --output text | xargs -I {} aws sqs purge-queue --queue-url {}
-}
-
-function pgit() {
-  ssh-add -D
-  ssh-add ~/.ssh/id_personal_rsa_github
-  git config --global user.name "Aviv Atedgi"
-  git config --global user.email "aviv@atedgi.com"
-}
-
-function wgit() {
-  ssh-add -D
-  ssh-add ~/.ssh/id_work_rsa_github
-  git config --global user.name "Aviv Atedgi"
-  git config --global user.email "aviv.atedgi@foo.com"
 }
 
 function cgv() {

@@ -4,6 +4,8 @@
 [push]
 	autoSetupRemote = true
 
-[user]
-	name = Aviv Atedgi
-	email = aviv@atedgi.com
+[includeIf "gitdir:~/Work/"]
+    path = ~/.gitconfig-work.inc
+
+[includeIf "gitdir:~/Personal/"]
+    path = ~/.gitconfig-personal.inc
