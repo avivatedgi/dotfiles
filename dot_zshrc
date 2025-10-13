@@ -148,3 +148,6 @@ export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 alias k=kubectl
 complete -o default -F __start_kubectl k
 
+# Set nvim as the default editor for git
+export EDITOR=nvim
+export GIT_EDITOR=nvim

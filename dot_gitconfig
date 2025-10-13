@@ -9,3 +9,6 @@
 
 [includeIf "gitdir:~/Personal/"]
     path = ~/.gitconfig-personal.inc
+
+[includeIf "gitdir:~/.local/share/chezmoi"]
+    path = ~/.gitconfig-personal.inc
