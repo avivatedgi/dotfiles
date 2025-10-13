@@ -27,9 +27,9 @@ GITHUB_USERNAME=<your_username> /bin/bash -c "$(curl -fsSL https://raw.githubuse
 
 Generate two SSH-keys for your GitHub accounts (one for personal, one for work):
 
-```
-$ ssh-keygen -t rsa -f ~/.ssh/id_personal_rsa_github
-$ ssh-keygen -t rsa -f ~/.ssh/id_work_rsa_github
+```bash
+ssh-keygen -t rsa -f ~/.ssh/id_personal_rsa_github
+ssh-keygen -t rsa -f ~/.ssh/id_work_rsa_github
 ```
 
 Make sure to use the generated key for configurating your GitHub accounts. From now on, anything you clone under the path `~/Projects/Personal` will use your personal key, and anything you clone under the path `~/Projects/Work` will use your work key.
@@ -40,8 +40,8 @@ Make sure to use the generated key for configurating your GitHub accounts. From 
 
 ### IDEs
 
-- Cursor
-- VS Code
+- Cursor - Comes predefined with a lot of out-of-the-box extensions.
+- VS Code - Comes predefined with a lot of out-of-the-box extensions.
 - [Neovim](https://github.com/neovim/neovim) + [LazyVim](https://github.com/LazyVim/LazyVim)
 
 ### Raycast
@@ -96,9 +96,10 @@ Also, here are some of the built-in features you should use and configure them a
 
 ---
 
-## ➕ Further Documentation
+## Documentation
 
 - [AWS aliases & utils](./docs/aws.md)
 - [Go aliases & utils](./docs/go.md)
 - [Git aliases & utils](./docs/git.md)
 - [GitHub aliases & utils](./docs/github.md)
+- [VS Code & Cursor Configurations & Key Bindings](./docs/vscode.md)

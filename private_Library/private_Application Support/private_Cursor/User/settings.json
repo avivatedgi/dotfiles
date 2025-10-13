@@ -1,0 +1,25 @@
+{
+  // Terminal Configuration
+  "terminal.integrated.fontFamily": "FiraCode Nerd Font",
+  "terminal.external.osxExec": "Warp.app",
+
+  // Global Configuration
+  "workbench.iconTheme": "material-icon-theme",
+  "chat.mcp.gallery.enabled": true,
+  "files.autoSave": "afterDelay",
+  "editor.formatOnSave": true,
+
+  // Python Configuration
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff"
+  },
+
+  // Go Configuration
+  "go.useLanguageServer": true,
+  "go.toolsManagement.autoUpdate": true,
+  "go.lintTool": "golangci-lint",
+  "gopls": {
+    "formatting.gofumpt": true,
+    "ui.semanticTokens": true
+  }
+}

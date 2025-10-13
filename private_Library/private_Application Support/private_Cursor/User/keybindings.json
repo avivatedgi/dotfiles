@@ -1,0 +1,77 @@
+// Place your key bindings in this file to override the defaults
+[
+    {
+        "key": "ctrl+[",
+        "command": "workbench.action.navigateBack",
+        "when": "canNavigateBack"
+    },
+    {
+        "key": "cmd+]",
+        "command": "workbench.action.navigateForward",
+        "when": "canNavigateForward"
+    },
+    {
+        "key": "ctrl+alt+up",
+        "command": "editor.action.insertCursorAbove",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+alt+down",
+        "command": "editor.action.insertCursorBelow",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+cmd+[",
+        "command": "editor.fold",
+        "when": "editorTextFocus && foldingEnabled"
+    },
+    {
+        "key": "ctrl+cmd+]",
+        "command": "editor.unfold",
+        "when": "editorTextFocus && foldingEnabled"
+    },
+    {
+        "key": "ctrl+shift+cmd+]",
+        "command": "editor.unfoldAll",
+        "when": "editorTextFocus && foldingEnabled"
+    },
+    {
+        "key": "ctrl+shift+cmd+[",
+        "command": "editor.foldAll",
+        "when": "editorTextFocus && foldingEnabled"
+    },
+    {
+        "key": "cmd+\\",
+        "command": "-workbench.action.splitEditor"
+    },
+    {
+        "key": "ctrl+.",
+        "command": "editor.action.triggerSuggest",
+        "when": "editorHasCompletionItemProvider && textInputFocus && !editorReadonly && !suggestWidgetVisible"
+    },
+    {
+        "key": "cmd+i",
+        "command": "-editor.action.triggerSuggest",
+        "when": "editorHasCompletionItemProvider && textInputFocus && !editorReadonly && !suggestWidgetVisible"
+    },
+    {
+        "key": "ctrl+e ctrl+f9",
+        "command": "editor.debug.action.editBreakpoint",
+        "when": "!terminalFocus"
+    },
+    {
+        "key": "ctrl+c ctrl+f9",
+        "command": "editor.debug.action.conditionalBreakpoint",
+        "when": "!terminalFocus"
+    },
+    {
+        "key": "ctrl+c f9",
+        "command": "editor.debug.action.conditionalBreakpoint",
+        "when": "!terminalFocus"
+    },
+    {
+        "key": "ctrl+e f9",
+        "command": "editor.debug.action.editBreakpoint",
+        "when": "!terminalFocus"
+    }
+]
