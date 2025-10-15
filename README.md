@@ -32,13 +32,19 @@ ssh-keygen -t rsa -f ~/.ssh/id_personal_rsa_github
 ssh-keygen -t rsa -f ~/.ssh/id_work_rsa_github
 ```
 
-Make sure to use the generated key for configurating your GitHub accounts. From now on, anything you clone under the path `~/Projects/Personal` will use your personal key, and anything you clone under the path `~/Projects/Work` will use your work key.
+Make sure to use the generated key for configurating your GitHub accounts.
+
+From now on, anything you clone under the path:
+
+- `~/Projects/Personal` - will use your personal key.
+- `~/Projects/Work` - will use your work key.
+- Anywhere else won't work with any of them.
 
 ---
 
 ## ❓ What Is Installed?
 
-### IDEs
+### IDEs & Editors
 
 - Cursor - Comes predefined with a lot of out-of-the-box extensions.
 - VS Code - Comes predefined with a lot of out-of-the-box extensions.
@@ -96,7 +102,7 @@ Also, here are some of the built-in features you should use and configure them a
 - [psql](https://www.postgresql.org/docs/current/app-psql.html) - the official postgres client.
 - [pgcli](https://github.com/dbcli/pgcli) - postgres cli that does auto-completion and syntax highlighting.
 - [rg](https://github.com/BurntSushi/ripgrep) - a.k.a ripgrep - super-fast, recursive, command-line search tool that finds patterns in files, similar to grep with performance and features that make it a modern alternative.
-- [fd](https://github.com/sharkdp/fd) - a simple, fast and user-friendly alternative to [find](https://www.gnu.org/software/findutils/). 
+- [fd](https://github.com/sharkdp/fd) - a simple, fast and user-friendly alternative to [find](https://www.gnu.org/software/findutils/).
 
 ### Misc
 
