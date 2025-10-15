@@ -48,6 +48,15 @@ Make sure to use the generated key for configurating your GitHub accounts. From 
 
 [Raycast](https://www.raycast.com/) is an application launcher and productivity tool for macOS that acts as a powerful, extendable alternative to the built-in Spotlight search. I highly recommended to configure your own keybindings and downloading your own extensions.
 
+I highly recommend also to replace the original spotlight shortcut (⌘ + Space) with Raycast:
+
+1. Go to System Settings > Keyboard > Keyboard Shortcuts.
+2. Click on Spotlight.
+3. Turn off the toggle or clear the shortcut for "Show spotlight search".
+4. Open Raycast.
+5. Go to Settings > General.
+6. Replace the Raycast Hotkey to be ⌘ + Space.
+
 Here are the extensions that I use:
 
 - Visual Studio Code - I mostly use it for searching all recent repositories.
@@ -87,7 +96,7 @@ Also, here are some of the built-in features you should use and configure them a
 - [psql](https://www.postgresql.org/docs/current/app-psql.html) - the official postgres client.
 - [pgcli](https://github.com/dbcli/pgcli) - postgres cli that does auto-completion and syntax highlighting.
 - [rg](https://github.com/BurntSushi/ripgrep) - a.k.a ripgrep - super-fast, recursive, command-line search tool that finds patterns in files, similar to grep with performance and features that make it a modern alternative.
-- [fd]
+- [fd](https://github.com/sharkdp/fd) - a simple, fast and user-friendly alternative to [find](https://www.gnu.org/software/findutils/). 
 
 ### Misc
 

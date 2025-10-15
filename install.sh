@@ -114,35 +114,6 @@ npm install -g magika
 sudo n stable
 
 # --------------------------------------
-# Installing Go Dependencies
-# --------------------------------------
-info "Installing go dependencies..."
-
-if ! command_exists gopls; then
-  go install golang.org/x/tools/gopls@latest
-fi
-
-if ! command_exists dlv; then
-  go install github.com/go-delve/delve/cmd/dlv@latest
-fi
-
-if ! command_exists impl; then
-  go install github.com/josharian/impl@latest
-fi
-
-if ! command_exists staticcheck; then
-  go install honnef.co/go/tools/cmd/staticcheck@latest
-fi
-
-if ! command_exists golangci-lint; then
-  go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
-fi
-
-if ! command_exists govulncheck; then
-  go install golang.org/x/vuln/cmd/govulncheck@latest
-fi
-
-# --------------------------------------
 # Fix Git Config File
 # --------------------------------------
 info "Updating .gitconfig file to current user"
