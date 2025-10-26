@@ -110,8 +110,13 @@ info "Installing npm dependencies..."
 npm install -g npm@latest
 npm install -g npx -f
 npm install -g n -f
-npm install -g magika
 sudo n stable
+
+# --------------------------------------
+# Install Other Dependencies
+# --------------------------------------
+info "Installing magika"
+curl -LsSf https://securityresearch.google/magika/install.sh | sh
 
 # --------------------------------------
 # Fix Git Config File
