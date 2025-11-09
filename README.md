@@ -16,7 +16,7 @@ First, fork this repository and update the following files to include your name 
 Run this command on a new Mac to install everything automatically (change `<your_username>` to your username):
 
 ```bash
-GITHUB_USERNAME=<your_username> /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/$GITHUB_USERNAME/dotfiles/main/install.sh)" && rm -rf ~/.local/share/chezmoi/.git
+GITHUB_USERNAME=<your_username> /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/$GITHUB_USERNAME/dotfiles/refs/heads/main/install.sh)" && rm -rf ~/.local/share/chezmoi/.git
 ```
 
 ---
