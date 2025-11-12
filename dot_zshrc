@@ -78,9 +78,26 @@ zinit wait lucid atload"zicompinit; zicdreplay" blockf for \
 zinit ice wait lucid
 zinit light hlissner/zsh-autopair
 
+# Key bindings - Fix HOME/END keys and ensure emacs mode
+bindkey -e  # Explicitly set emacs mode (default, but ensures it's set)
+
+# Bind HOME and END keys properly
+bindkey '\e[H'    beginning-of-line  # HOME key (xterm)
+bindkey '\eOH'    beginning-of-line  # HOME key (vt100)
+bindkey '\e[1~'   beginning-of-line  # HOME key (some terminals)
+bindkey '\e[F'    end-of-line        # END key (xterm)
+bindkey '\eOF'    end-of-line        # END key (vt100)
+bindkey '\e[4~'   end-of-line        # END key (some terminals)
+
+# Bind other navigation keys
+bindkey '\e[3~'   delete-char        # DELETE key
+bindkey '\e[2~'   overwrite-mode     # INSERT key
+bindkey '\e[5~'   history-beginning-search-backward  # PAGE UP
+bindkey '\e[6~'   history-beginning-search-forward   # PAGE DOWN
+
 # Aliases
+alias vim="nvim"
 alias sftp="with-readline sftp"
-w="nvim"
 alias pwdc='echo \"$(pwd)\" | tr -d "\n" | toclip'
 alias pwdcd='echo "cd \"$(pwd)\"" | toclip'
 alias ga='git add'
@@ -127,6 +144,14 @@ function cgv() {
   go env -w GOTOOLCHAIN=go$1
 }
 
+function al() {
+  aws sso login --profile $1
+}
+
+function ap() {
+  eval $(aws configure export-credentials --format env --profile $1)
+}
+
 # Path Variables
 export PATH="/opt/homebrew/bin/":"$PATH"
 export PATH="$PATH":"$HOME/go/bin"
@@ -151,3 +176,5 @@ complete -o default -F __start_kubectl k
 # Set nvim as the default editor for git
 export EDITOR=nvim
 export GIT_EDITOR=nvim
+
+complete -o nospace -C /opt/homebrew/bin/tofu tofu
