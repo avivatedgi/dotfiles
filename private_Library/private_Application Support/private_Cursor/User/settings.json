@@ -21,5 +21,19 @@
   "gopls": {
     "formatting.gofumpt": true,
     "ui.semanticTokens": true
-  }
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "git.confirmSync": false,
+  "explorer.confirmDragAndDrop": false,
+  "terminal.integrated.profiles.osx": {
+    "zsh": {
+      "path": "/bin/zsh",
+      "args": ["-l"]
+    }
+  },
+  "terminal.integrated.defaultProfile.osx": "zsh",
+  "terminal.integrated.inheritEnv": true,
+  "terminal.integrated.shellIntegration.enabled": true
 }

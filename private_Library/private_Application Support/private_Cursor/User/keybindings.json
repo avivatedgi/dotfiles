@@ -6,11 +6,6 @@
         "when": "canNavigateBack"
     },
     {
-        "key": "cmd+]",
-        "command": "workbench.action.navigateForward",
-        "when": "canNavigateForward"
-    },
-    {
         "key": "ctrl+alt+up",
         "command": "editor.action.insertCursorAbove",
         "when": "editorTextFocus"
@@ -73,5 +68,10 @@
         "key": "ctrl+e f9",
         "command": "editor.debug.action.editBreakpoint",
         "when": "!terminalFocus"
+    },
+    {
+        "key": "ctrl+]",
+        "command": "workbench.action.navigateForward",
+        "when": "canNavigateForward"
     }
 ]
