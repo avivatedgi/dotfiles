@@ -18,6 +18,9 @@ source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
+# Ensure completion directories are in fpath
+fpath=($fpath /opt/homebrew/share/zsh/site-functions /usr/local/share/zsh/site-functions)
+
 autoload -U +X bashcompinit && bashcompinit
 autoload -U +X compinit && compinit
 
@@ -165,16 +168,26 @@ export PATH=$PATH:$HOME/.cargo/bin
 
 # Makefiles target auto-completions
 zstyle ':completion:*:*:make:*' tag-order 'targets'
-autoload -U compinit && compinit
+# compinit is already called above, no need to call it again
 
 # Kubectl autocompletions & Krew config
 source <(kubectl completion zsh)
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 alias k=kubectl
-complete -o default -F __start_kubectl k
+alias kctx=kubectx
+# kubectl completion zsh already sets up completion for 'k' alias, no need for complete command
 
 # Set nvim as the default editor for git
 export EDITOR=nvim
 export GIT_EDITOR=nvim
 
-complete -o nospace -C /opt/homebrew/bin/tofu tofu
+# Completions setup
+
+# Tofu: Use bash-style completion
+# Note: Bash completions set up with 'complete' may not appear in fzf-tab
+# because fzf-tab works with zsh's native completion system.
+# They will still work with traditional zsh completion (disable fzf-tab temporarily with Ctrl+T)
+if command -v tofu >/dev/null 2>&1; then
+	TOFU_BIN=$(command -v tofu)
+	complete -o nospace -C "$TOFU_BIN" tofu 2>/dev/null
+fi
