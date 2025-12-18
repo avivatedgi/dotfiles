@@ -22,6 +22,9 @@
     "formatting.gofumpt": true,
     "ui.semanticTokens": true
   },
+  "yaml.schemas": {
+    "file:///Users/aviv/.cursor/extensions/atlassian.atlascode-4.0.13-universal/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+  },
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -35,5 +38,10 @@
   },
   "terminal.integrated.defaultProfile.osx": "zsh",
   "terminal.integrated.inheritEnv": true,
-  "terminal.integrated.shellIntegration.enabled": true
+  "terminal.integrated.shellIntegration.enabled": true,
+  "git.blame.editorDecoration.enabled": true,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "gitlens.ai.model": "gitkraken",
+  "gitlens.ai.gitkraken.model": "gemini:gemini-2.0-flash",
+  "accessibility.signalOptions.volume": 0
 }
