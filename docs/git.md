@@ -24,6 +24,7 @@ alias grim='git rebase -i origin/master'
 alias groot='cd $(git rev-parse --show-toplevel)' # CDs into the top level 
 alias gbn="git rev-parse --abbrev-ref HEAD" # Shows the git branch name
 alias cgbn="git rev-parse --abbrev-ref HEAD | pbcopy" # Copies the git branch name
+alias gsu="git submodule update --init --recursive --remote" # Update git submodules
 ```
 
 ## Functions

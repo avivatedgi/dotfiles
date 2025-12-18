@@ -95,6 +95,15 @@ Also, here are some of the built-in features you should use and configure them a
 - [Python](https://www.python.org/)
 - [Rust](https://rust-lang.org/)
 
+### Kubernetes Tools
+
+- [kubectl](https://kubernetes.io/docs/reference/kubectl/) - Kubernetes CLI.
+- [k9s](https://github.com/derailed/k9s) - Terminal UI for Kubernetes.
+- [kubectx](https://github.com/ahmetb/kubectx) - Context and namespace switcher.
+- [krew](https://krew.sigs.k8s.io/) - kubectl plugin manager.
+- [helm](https://helm.sh/) - Kubernetes package manager.
+- [Lens](https://k8slens.dev/) - Kubernetes IDE.
+
 ### CLI Tools
 
 - AWS CLI
@@ -103,6 +112,15 @@ Also, here are some of the built-in features you should use and configure them a
 - [pgcli](https://github.com/dbcli/pgcli) - postgres cli that does auto-completion and syntax highlighting.
 - [rg](https://github.com/BurntSushi/ripgrep) - a.k.a ripgrep - super-fast, recursive, command-line search tool that finds patterns in files, similar to grep with performance and features that make it a modern alternative.
 - [fd](https://github.com/sharkdp/fd) - a simple, fast and user-friendly alternative to [find](https://www.gnu.org/software/findutils/).
+- [fzf](https://github.com/junegunn/fzf) - Command-line fuzzy finder.
+- [eza](https://github.com/eza-community/eza) - Modern replacement for `ls`.
+- [gh](https://cli.github.com/) - GitHub CLI.
+- [lazygit](https://github.com/jesseduffield/lazygit) - Terminal UI for git.
+- [gitui](https://github.com/extrawurst/gitui) - Terminal UI for git.
+- [sops](https://github.com/getsops/sops) - Secrets management.
+- [OpenTofu](https://opentofu.org/) - Open-source Terraform alternative.
+- [act](https://github.com/nektos/act) - Run GitHub Actions locally.
+- [uv](https://github.com/astral-sh/uv) - Fast Python package manager.
 
 ### Misc
 
@@ -114,7 +132,8 @@ Also, here are some of the built-in features you should use and configure them a
 ## Documentation
 
 - [AWS aliases & utils](./docs/aws.md)
-- [Go aliases & utils](./docs/go.md)
 - [Git aliases & utils](./docs/git.md)
 - [GitHub aliases & utils](./docs/github.md)
+- [Go aliases & utils](./docs/go.md)
+- [Kubernetes aliases & utils](./docs/kubernetes.md)
 - [VS Code & Cursor Configurations & Key Bindings](./docs/vscode.md)
