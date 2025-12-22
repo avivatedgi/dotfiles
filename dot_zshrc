@@ -155,119 +155,6 @@ function ap() {
   eval $(aws configure export-credentials --format env --profile $1)
 }
 
-# Function to checkout JIRA branches
-function dr() {
-  if [ -z "$1" ]; then
-    echo "Usage: dr <ticket-number>"
-    return 1
-  fi
-  
-  local ticket="$1"
-  local branch_pattern="DR-${ticket}"
-  
-  echo "Fetching remote branches..."
-  git fetch
-  
-  echo "Searching for branches matching ${branch_pattern}..."
-  
-  # Get all matching branches (strip 'origin/' prefix and whitespace)
-  local branches=$(git branch -r | grep -i "${branch_pattern}" | sed 's/^[[:space:]]*origin\///' | xargs -n1)
-  
-  if [ -z "$branches" ]; then
-    echo "No branch found matching ${branch_pattern}"
-    return 1
-  fi
-  
-  # Count matching branches
-  local count=$(echo "$branches" | wc -l | xargs)
-  
-  local branch
-  if [ "$count" -eq 1 ]; then
-    # Single match - use it directly
-    branch="$branches"
-  else
-    # Multiple matches - use fzf to select
-    echo "Found ${count} branches matching ${branch_pattern}:"
-    branch=$(echo "$branches" | fzf --height=40% --reverse --prompt="Select branch: ")
-    
-    if [ -z "$branch" ]; then
-      echo "No branch selected"
-      return 1
-    fi
-  fi
-  
-  echo "Checking out branch: ${branch}"
-  gco "$branch"
-}
-
-# Drift Database Tunnel
-cdb() {
-  case "$1" in
-    prod_us)
-      INSTANCE="i-0db34186a78c00038"
-      HOST="drift-prod-postgres.cx0g8oq6eref.us-east-2.rds.amazonaws.com"
-      PROFILE="drift-prod"
-      REGION="us-east-2"
-      PORT=5433
-      ;;
-    prod_eu)
-      INSTANCE="i-0db5d3211ddacb68c"
-      HOST="drift-prod-postgres.cpsaqqyoev2s.eu-central-1.rds.amazonaws.com"
-      PROFILE="drift-prod"
-      REGION="eu-central-1"
-      PORT=5434
-      ;;
-    dev_us)
-      INSTANCE="i-03054fb36b4dccb1c"
-      HOST="drift-dev-postgres.cdgcyeu4wplm.us-east-2.rds.amazonaws.com"
-      PROFILE="drift-dev"
-      REGION="us-east-2"
-      PORT=5435
-      ;;
-    dev_eu)
-      INSTANCE="i-006882ce5382e8e34"
-      HOST="drift-dev-postgres.czui882w4v1h.eu-central-1.rds.amazonaws.com"
-      PROFILE="drift-dev"
-      REGION="eu-central-1"
-      PORT=5436
-      ;;
-    *)
-      echo "Usage: connect_db [prod_us|prod_eu|dev_us|dev_eu]"
-      return 1
-      ;;
-  esac
-
-  echo "🔗 Connecting to $1 database..."
-  echo "   Host: localhost:$PORT → $HOST"
-  aws ssm start-session \
-    --target "$INSTANCE" \
-    --document-name AWS-StartPortForwardingSessionToRemoteHost \
-    --parameters "{\"host\":[\"$HOST\"],\"portNumber\":[\"5432\"],\"localPortNumber\":[\"$PORT\"]}" \
-    --profile "$PROFILE" \
-    --region "$REGION"
-}
-
-gdbp() {
-  case "$1" in
-    prod_us)
-      aws secretsmanager get-secret-value --secret-id rds!db-cfba4879-fd60-4a8b-82aa-932792477e3c --region us-east-2 --query SecretString --output text | jq -r .password | pbcopy
-      ;;
-    prod_eu)
-      aws secretsmanager get-secret-value --secret-id rds!db-8a58903d-df07-46e1-a90c-af897f624b43 --region eu-central-1 --query SecretString --output text | jq -r .password | pbcopy
-      ;;
-    dev_us)
-      aws secretsmanager get-secret-value --secret-id rds!db-d2580a57-0038-4b39-91dc-64f4061e1ab6 --region us-east-2 --query SecretString --output text | jq -r .password | pbcopy
-      ;;
-    dev_eu)
-      aws secretsmanager get-secret-value --secret-id rds!db-21d2b773-c8dd-4c18-90ea-a7637042b19f --region eu-central-1 --query SecretString --output text | jq -r .password | pbcopy
-      ;;
-    *)
-      echo "Usage: get_db_password [prod_us|prod_eu|dev_us|dev_eu]"
-      return 1
-      ;;
-  esac
-}
-
 # Path Variables
 export PATH="/opt/homebrew/bin/":"$PATH"
 export PATH="$PATH":"$HOME/go/bin"
@@ -317,3 +204,6 @@ export NVM_DIR="$HOME/.nvm"
   [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
   [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 source /Users/aviv/.config/op/plugins.sh
+
+# Work-related zsh config
+[ -f $HOME/.zshrc.work ] && source $HOME/.zshrc.work
