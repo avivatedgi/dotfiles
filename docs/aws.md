@@ -12,6 +12,4 @@ export_aws_env  # Export AWS credentials to environment variables (current profi
 ```sh
 al <profile>   # AWS SSO login for a profile
 ap <profile>   # Export AWS credentials to environment for a specific profile
-cdb <env>      # Start SSM port forwarding tunnel to database (env: prod_us|prod_eu|dev_us|dev_eu)
-gdbp <env>     # Copy database password to clipboard (env: prod_us|prod_eu|dev_us|dev_eu)
 ```
