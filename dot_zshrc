@@ -156,6 +156,14 @@ function ap() {
   eval $(aws configure export-credentials --format env --profile $1)
 }
 
+function klogs() {
+  local input=$1
+  local namespace=${input%%/*}
+  local pod=${input#*/}
+  shift
+  kubectl logs -n "$namespace" -f "$pod" "$@"
+}
+
 # Path Variables
 export PATH="/opt/homebrew/bin/":"$PATH"
 export PATH="$PATH":"$HOME/go/bin"
