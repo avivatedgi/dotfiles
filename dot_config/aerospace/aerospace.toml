@@ -130,6 +130,10 @@ alt-shift-semicolon = 'mode service'
 # Optional close (macOS cmd+w also works)
 alt-q = 'close'
 
+# Show cheatsheet (Alt + ?) - opens with glow in pager mode (install: brew install glow)
+# Press q to exit the preview
+alt-shift-slash = 'exec-and-forget alacritty -e glow -p ~/.config/aerospace/README.md'
+
 
 # --- RESIZE MODE --------------------------------------------------------------
 [mode.resize.binding]
