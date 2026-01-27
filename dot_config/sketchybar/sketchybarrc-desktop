@@ -3,22 +3,22 @@
 # ┌─────────────────────────────────────┐
 # │   Sketchybar - DESKTOP Config      │
 # │   Design: Catppuccin Macchiato     │
-# │   For external monitors            │
 # └─────────────────────────────────────┘
 
 PLUGIN_DIR="$HOME/.config/sketchybar/plugins"
 FONT_FACE="JetBrainsMono Nerd Font"
 
 # Catppuccin Macchiato Colors
-COLOR_BAR="0x66494d64"
+COLOR_BAR="0xcc363a4f"        # Purple-ish bar background
+COLOR_SURFACE="0x66494d64"
 COLOR_PEACH="0xfff5a97f"
 COLOR_GREEN="0xffa6da95"
 COLOR_RED="0xffed8796"
 COLOR_BLUE="0xff8aadf4"
 COLOR_MAUVE="0xffc6a0f6"
+COLOR_TEAL="0xff8bd5ca"
 COLOR_TEXT_DARK="0xff24273a"
 COLOR_TEXT_LIGHT="0xffcad3f5"
-COLOR_SURFACE="0x44ffffff"
 
 ##### Bar Appearance #####
 sketchybar --bar \
@@ -27,104 +27,89 @@ sketchybar --bar \
     color=$COLOR_BAR \
     margin=0 \
     sticky=on \
-    padding_left=0 \
-    padding_right=0 \
+    padding_left=8 \
+    padding_right=8 \
     topmost=window \
     display=all
 
 ##### Changing Defaults #####
 sketchybar --default \
-    background.height=32 \
-    icon.font="$FONT_FACE:Bold:17.0" \
+    background.height=26 \
+    background.corner_radius=5 \
+    background.padding_left=5 \
+    background.padding_right=5 \
+    icon.font="$FONT_FACE:Bold:14.0" \
     icon.color=$COLOR_TEXT_DARK \
-    icon.padding_left=5 \
-    icon.padding_right=5 \
-    label.font="$FONT_FACE:Bold:14.0" \
+    icon.padding_left=8 \
+    icon.padding_right=4 \
+    label.font="$FONT_FACE:Bold:12.0" \
     label.color=$COLOR_TEXT_DARK \
-    label.y_offset=1 \
-    label.padding_left=0 \
-    label.padding_right=5
+    label.padding_left=4 \
+    label.padding_right=8
 
-##### AeroSpace Workspace Indicators #####
-sketchybar --add event aerospace_workspace_change
-
-for sid in $(aerospace list-workspaces --all); do
-    sketchybar --add item space.$sid left \
-        --subscribe space.$sid aerospace_workspace_change \
-        --set space.$sid \
-        background.color=$COLOR_PEACH \
-        background.corner_radius=5 \
-        background.height=20 \
-        background.drawing=off \
-        icon.drawing=off \
-        label="$sid" \
-        label.color=$COLOR_TEXT_DARK \
-        label.font="$FONT_FACE:Bold:12.0" \
-        label.padding_left=8 \
-        label.padding_right=8 \
-        click_script="aerospace workspace $sid" \
-        script="$PLUGIN_DIR/aerospace.sh $sid"
-done
-
-##### Front App #####
+##### Left Side - Front App with Icon #####
 sketchybar --add item front_app left \
     --set front_app \
     background.color=$COLOR_GREEN \
-    background.padding_left=0 \
-    background.padding_right=0 \
-    icon.y_offset=1 \
+    background.drawing=on \
+    icon.drawing=off \
+    icon.background.drawing=on \
+    icon.background.image.scale=0.8 \
     label.drawing=no \
     script="$PLUGIN_DIR/front_app.sh" \
-    --add item front_app.separator left \
+    --subscribe front_app front_app_switched
+
+sketchybar --add item front_app.separator left \
     --set front_app.separator \
-    background.color=0x00000000 \
+    background.drawing=off \
     icon= \
     icon.color=$COLOR_GREEN \
-    icon.font="$FONT_FACE:Bold:23.0" \
+    icon.font="$FONT_FACE:Bold:20.0" \
     icon.padding_left=0 \
     icon.padding_right=0 \
-    icon.y_offset=1 \
-    label.drawing=no \
-    --add item front_app.name left \
-    --set front_app.name \
-    background.color=0x00000000 \
-    icon.drawing=off \
-    label.font="$FONT_FACE:Bold:14.0" \
-    label.color=$COLOR_TEXT_LIGHT \
-    label.padding_left=5
+    label.drawing=no
 
-sketchybar --add bracket front_app_bracket \
-    front_app \
-    front_app.separator \
-    front_app.name \
-    --subscribe front_app front_app_switched
+sketchybar --add item front_app.name left \
+    --set front_app.name \
+    background.drawing=off \
+    icon.drawing=off \
+    label.font="$FONT_FACE:Bold:13.0" \
+    label.color=$COLOR_TEXT_LIGHT \
+    label.padding_left=4 \
+    label.padding_right=0
 
 ##### Right Side Items #####
 
-# Clock
+# Clock with date
 sketchybar --add item clock right \
     --set clock \
-    icon=󰃰 \
     background.color=$COLOR_RED \
+    background.drawing=on \
+    icon=󰃰 \
+    icon.color=$COLOR_TEXT_DARK \
+    label.color=$COLOR_TEXT_DARK \
     update_freq=10 \
     script="$PLUGIN_DIR/clock.sh"
 
 # Volume
 sketchybar --add item volume right \
     --set volume \
-    icon.color=$COLOR_BLUE \
-    label.color=$COLOR_TEXT_LIGHT \
-    background.color=0x00000000 \
+    background.color=$COLOR_BLUE \
+    background.drawing=on \
+    icon.color=$COLOR_TEXT_DARK \
+    label.color=$COLOR_TEXT_DARK \
+    label.drawing=off \
     script="$PLUGIN_DIR/volume.sh" \
     --subscribe volume volume_change
 
 # Battery
 sketchybar --add item battery right \
     --set battery \
-    icon.color=$COLOR_MAUVE \
-    label.color=$COLOR_TEXT_LIGHT \
-    background.color=0x00000000 \
-    update_freq=120 \
+    background.color=$COLOR_TEAL \
+    background.drawing=on \
+    icon.color=$COLOR_TEXT_DARK \
+    label.color=$COLOR_TEXT_DARK \
+    update_freq=60 \
     script="$PLUGIN_DIR/battery.sh" \
     --subscribe battery system_woke power_source_change
 
