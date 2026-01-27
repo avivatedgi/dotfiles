@@ -37,7 +37,3 @@
 	diffFilter = delta --color-only
 [pager]
 	difftool = true
-[url "git@bitbucket.org:"]
-	insteadOf = https://bitbucket.org/
-[url "git@github.com:"]
-	insteadOf = https://github.com/
