@@ -1,14 +1,43 @@
-[alias]
-	hist = log --pretty=format:'%C(yellow)[%ad]%C(reset) %C(green)[%h]%C(reset) | %C(red)%s %C(bold red){{%an}}%C(reset) %C(blue)%d%C(reset)' --graph --date=short
-
-[push]
-	autoSetupRemote = true
-
-[includeIf "gitdir:/Users/aviv/Work/"]
+[includeIf "gitdir:/Users/aviv/Projects/Work/"]
     path = ~/.gitconfig-work.inc
 
-[includeIf "gitdir:/Users/aviv/Personal/"]
+[includeIf "gitdir:/Users/aviv/Projects/Personal/"]
     path = ~/.gitconfig-personal.inc
 
 [includeIf "gitdir:/Users/aviv/.local/share/chezmoi/"]
     path = ~/.gitconfig-personal.inc
+
+[alias]
+	hist = log --pretty=format:'%C(yellow)[%ad]%C(reset) %C(green)[%h]%C(reset) | %C(red)%s %C(bold red){{%an}}%C(reset) %C(blue)%d%C(reset)' --graph --date=short
+    dft = difftool
+	reset-all = "!bash -c \"git stash --include-untracked && git stash drop\""
+
+
+[core]
+    editor = nvim
+    pager = delta
+[pull]
+    ff = only
+[push]
+    default = current
+	autoSetupRemote = true
+
+[diff]
+	colorMoved = default
+	tool = difftastic
+[difftool]
+	prompt = false
+[difftool "difftastic"]
+	cmd = difft "$LOCAL" "$REMOTE"
+[delta]
+	navigate = true # use n and N to move between diff sections
+	line-numbers = true
+	theme = Monokai Extended
+[interactive]
+	diffFilter = delta --color-only
+[pager]
+	difftool = true
+[url "git@bitbucket.org:"]
+	insteadOf = https://bitbucket.org/
+[url "git@github.com:"]
+	insteadOf = https://github.com/

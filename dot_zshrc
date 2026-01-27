@@ -112,6 +112,7 @@ alias gco='git checkout'
 alias gd='git diff'
 alias gf='git fetch'
 alias gl='git pull'
+alias glc='git rev-parse --short HEAD | pbcopy'
 alias gp='git push'
 alias gs='git status'
 alias gst='git status'
@@ -214,5 +215,9 @@ export NVM_DIR="$HOME/.nvm"
   [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 source /Users/aviv/.config/op/plugins.sh
 
+# Zoxide setup
+eval "$(zoxide init zsh)"
+
 # Work-related zsh config
 [ -f $HOME/.zshrc.work ] && source $HOME/.zshrc.work
+

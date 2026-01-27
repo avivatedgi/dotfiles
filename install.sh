@@ -128,4 +128,12 @@ else
   sed -i "s|/Users/aviv|${HOME}|g" "$HOME/.gitconfig"
 fi
 
+# --------------------------------------
+# Install tmux dependencies
+# --------------------------------------
+info "Installing tmux dependencies..."
+python3 -m pip install  --break-system-packages --user libtmux
+rm -rf ~/.tmux/plugins/tpm
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
 info "✅ Setup complete!"

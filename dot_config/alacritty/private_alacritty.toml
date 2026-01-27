@@ -1,0 +1,282 @@
+
+[env]
+TERM = "xterm-256color"
+
+# ─────────────────────────────────────
+# Window Settings
+# ─────────────────────────────────────
+[window]
+# Use "transparent" for a nice macOS look, or "buttonless" for minimal
+# Options: full, none, transparent, buttonless
+decorations = "buttonless"
+# Startup mode: Windowed, Maximized, Fullscreen, SimpleFullscreen (macOS)
+startup_mode = "Windowed"
+# Allow terminal to change window title
+dynamic_title = true
+# Padding around terminal content
+padding = { x = 8, y = 8 }
+# Spread padding evenly
+dynamic_padding = true
+# Window opacity (0.0 to 1.0)
+opacity = 1.0
+# Blur background (macOS only)
+blur = false
+# macOS-specific: use native tabs
+option_as_alt = "Both"
+
+# ─────────────────────────────────────
+# Font Settings
+# ─────────────────────────────────────
+[font]
+# Font size - increased for macOS retina displays
+size = 13.0
+
+[font.normal]
+family = "JetBrainsMono Nerd Font Mono"
+style = "Regular"
+
+[font.bold]
+family = "JetBrainsMono Nerd Font Mono"
+style = "SemiBold"
+
+[font.italic]
+family = "JetBrainsMono Nerd Font Mono"
+style = "Italic"
+
+[font.bold_italic]
+family = "JetBrainsMono Nerd Font Mono"
+style = "SemiBold Italic"
+
+# ─────────────────────────────────────
+# Colors (Tango theme with pure black/white)
+# ─────────────────────────────────────
+[colors.primary]
+background = "#000000"
+foreground = "#ffffff"
+
+[colors.normal]
+black = "#2e3436"
+red = "#cc0000"
+green = "#4e9a06"
+yellow = "#c4a000"
+blue = "#3465a4"
+magenta = "#75507b"
+cyan = "#06989a"
+white = "#d3d7cf"
+
+[colors.bright]
+black = "#555753"
+red = "#ef2929"
+green = "#8ae234"
+yellow = "#fce94f"
+blue = "#729fcf"
+magenta = "#ad7fa8"
+cyan = "#34e2e2"
+white = "#eeeeec"
+
+# Selection colors
+[colors.selection]
+text = "CellBackground"
+background = "CellForeground"
+
+# ─────────────────────────────────────
+# Scrolling
+# ─────────────────────────────────────
+[scrolling]
+history = 10000
+multiplier = 3
+
+# ─────────────────────────────────────
+# Cursor
+# ─────────────────────────────────────
+[cursor]
+unfocused_hollow = true
+blink_interval = 750
+
+[cursor.style]
+shape = "Block"
+blinking = "Off"
+
+# ─────────────────────────────────────
+# Mouse
+# ─────────────────────────────────────
+[mouse]
+hide_when_typing = true
+
+# ─────────────────────────────────────
+# Selection
+# ─────────────────────────────────────
+[selection]
+save_to_clipboard = true
+
+# ─────────────────────────────────────
+# Keyboard Bindings (macOS adapted)
+# ─────────────────────────────────────
+# macOS uses Command (⌘) instead of Super
+# Alt/Option key sends proper escape sequences for tmux
+
+[[keyboard.bindings]]
+key = "V"
+mods = "Command"
+action = "Paste"
+
+[[keyboard.bindings]]
+key = "C"
+mods = "Command"
+action = "Copy"
+
+[[keyboard.bindings]]
+key = "N"
+mods = "Command"
+action = "SpawnNewInstance"
+
+[[keyboard.bindings]]
+key = "Q"
+mods = "Command"
+action = "Quit"
+
+[[keyboard.bindings]]
+key = "W"
+mods = "Command|Shift"
+action = "Quit"
+
+[[keyboard.bindings]]
+key = "H"
+mods = "Command"
+action = "Hide"
+
+[[keyboard.bindings]]
+key = "M"
+mods = "Command"
+action = "Minimize"
+
+[[keyboard.bindings]]
+key = "F"
+mods = "Command|Control"
+action = "ToggleFullscreen"
+
+# Font size controls
+[[keyboard.bindings]]
+key = "Equals"
+mods = "Command"
+action = "IncreaseFontSize"
+
+[[keyboard.bindings]]
+key = "Minus"
+mods = "Command"
+action = "DecreaseFontSize"
+
+[[keyboard.bindings]]
+key = "Key0"
+mods = "Command"
+action = "ResetFontSize"
+
+# Search
+[[keyboard.bindings]]
+key = "F"
+mods = "Command"
+action = "SearchForward"
+
+[[keyboard.bindings]]
+key = "B"
+mods = "Command"
+action = "SearchBackward"
+
+# Send special key sequences for tmux integration
+# Ctrl+Tab for last window in tmux
+[[keyboard.bindings]]
+key = "Tab"
+mods = "Control"
+chars = "\u001b[27;5;9~"
+
+[[keyboard.bindings]]
+key = "Tab"
+mods = "Control|Shift"
+chars = "\u001b[27;6;9~"
+
+# Special keys for tmux pane navigation with Ctrl+Shift+hjkl
+[[keyboard.bindings]]
+key = "J"
+mods = "Control|Shift"
+chars = "\u001bJ"
+
+[[keyboard.bindings]]
+key = "H"
+mods = "Control|Shift"
+chars = "\u001bH"
+
+[[keyboard.bindings]]
+key = "K"
+mods = "Control|Shift"
+chars = "\u001bK"
+
+[[keyboard.bindings]]
+key = "L"
+mods = "Control|Shift"
+chars = "\u001bL"
+
+# Shift+Enter for tmux
+[[keyboard.bindings]]
+key = "Return"
+mods = "Shift"
+chars = "\u001b[13;2u"
+
+# Ctrl+Enter for tmux
+[[keyboard.bindings]]
+key = "Return"
+mods = "Control"
+chars = "\u001b[13;5u"
+
+# Ctrl+Semicolon
+[[keyboard.bindings]]
+key = "Semicolon"
+mods = "Control"
+chars = "\u001b;"
+
+# ─────────────────────────────────────
+# macOS Word/Line Navigation
+# ─────────────────────────────────────
+# Option + Left Arrow: Move back one word
+[[keyboard.bindings]]
+key = "Left"
+mods = "Alt"
+chars = "\u001bb"
+
+# Option + Right Arrow: Move forward one word
+[[keyboard.bindings]]
+key = "Right"
+mods = "Alt"
+chars = "\u001bf"
+
+# Cmd + Left Arrow: Move to beginning of line
+[[keyboard.bindings]]
+key = "Left"
+mods = "Command"
+chars = "\u0001"
+
+# Cmd + Right Arrow: Move to end of line
+[[keyboard.bindings]]
+key = "Right"
+mods = "Command"
+chars = "\u0005"
+
+# Option + Backspace: Delete word backward
+[[keyboard.bindings]]
+key = "Back"
+mods = "Alt"
+chars = "\u001b\u007f"
+
+# Cmd + Backspace: Delete to beginning of line
+[[keyboard.bindings]]
+key = "Back"
+mods = "Command"
+chars = "\u0015"
+
+[general]
+# ┌─────────────────────────────────────┐
+# │  Alacritty Configuration (macOS)   │
+# │  Adapted from ofir-dotfiles        │
+# └─────────────────────────────────────┘
+
+# General settings
+live_config_reload = true

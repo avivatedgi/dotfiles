@@ -1,0 +1,85 @@
+# ┌─────────────────────────────────────┐
+# │   Sesh Configuration               │
+# │   Smart tmux session manager       │
+# └─────────────────────────────────────┘
+# Docs: https://github.com/joshmedeski/sesh
+
+# Sessions to exclude from the list
+blacklist = ["scratch", ".git"]
+
+# How many directory components to show in session names
+# 1 = "myproject", 2 = "code/myproject"
+dir_length = 1
+
+# Order of session types in the list
+sort_order = [
+    "tmux",   # Active tmux sessions first
+    "config", # Configured sessions
+    "zoxide", # Recently visited directories
+]
+
+# ─────────────────────────────────────
+#         DEFAULT SESSION SETTINGS
+# ─────────────────────────────────────
+[default_session]
+# Command to run when connecting to a new session
+# startup_command = "nvim"
+
+# Preview command for fzf (shows directory contents)
+preview_command = "ls -la --color=always {}"
+
+# ─────────────────────────────────────
+#         CONFIGURED SESSIONS
+# ─────────────────────────────────────
+# Define sessions that will always appear in the list
+# These are great for projects you work on regularly
+
+# Example: Home directory
+[[session]]
+name = "home 🏠"
+path = "~"
+
+# Example: Downloads
+[[session]]
+name = "downloads 📥"
+path = "~/Downloads"
+startup_command = "ls -la"
+
+# Example: dotfiles (this workspace!)
+[[session]]
+name = "dotfiles ⚙️"
+path = "~/Projects/Personal/ofir-dotfiles"
+
+# ─────────────────────────────────────
+#         ADD YOUR OWN SESSIONS
+# ─────────────────────────────────────
+# Uncomment and customize these examples:
+
+# [[session]]
+# name = "work 💼"
+# path = "~/Projects/Work"
+# startup_command = "nvim"
+
+# [[session]]
+# name = "notes 📝"
+# path = "~/Documents/Notes"
+# startup_command = "nvim ."
+
+# ─────────────────────────────────────
+#         MULTI-WINDOW SESSIONS
+# ─────────────────────────────────────
+# You can define reusable window layouts
+
+# [[window]]
+# name = "git"
+# startup_script = "git status"
+
+# [[window]]
+# name = "server"
+# startup_script = "npm run dev"
+
+# Then use them in sessions:
+# [[session]]
+# name = "myproject"
+# path = "~/Projects/myproject"
+# windows = ["git", "server"]
