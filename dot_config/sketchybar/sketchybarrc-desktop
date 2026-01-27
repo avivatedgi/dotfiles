@@ -79,25 +79,26 @@ sketchybar --add item front_app.name left \
     label.padding_right=0
 
 ##### Right Side Items #####
+# All items on the right have dark/transparent background with colored icons only
 
 # Clock with date
 sketchybar --add item clock right \
     --set clock \
-    background.color=$COLOR_RED \
+    background.color=$COLOR_SURFACE \
     background.drawing=on \
     icon=󰃰 \
-    icon.color=$COLOR_TEXT_DARK \
-    label.color=$COLOR_TEXT_DARK \
+    icon.color=$COLOR_RED \
+    label.color=$COLOR_TEXT_LIGHT \
     update_freq=10 \
     script="$PLUGIN_DIR/clock.sh"
 
 # Volume
 sketchybar --add item volume right \
     --set volume \
-    background.color=$COLOR_BLUE \
+    background.color=$COLOR_SURFACE \
     background.drawing=on \
-    icon.color=$COLOR_TEXT_DARK \
-    label.color=$COLOR_TEXT_DARK \
+    icon.color=$COLOR_BLUE \
+    label.color=$COLOR_TEXT_LIGHT \
     label.drawing=off \
     script="$PLUGIN_DIR/volume.sh" \
     --subscribe volume volume_change
@@ -105,10 +106,10 @@ sketchybar --add item volume right \
 # Battery
 sketchybar --add item battery right \
     --set battery \
-    background.color=$COLOR_TEAL \
+    background.color=$COLOR_SURFACE \
     background.drawing=on \
-    icon.color=$COLOR_TEXT_DARK \
-    label.color=$COLOR_TEXT_DARK \
+    icon.color=$COLOR_MAUVE \
+    label.color=$COLOR_TEXT_LIGHT \
     update_freq=60 \
     script="$PLUGIN_DIR/battery.sh" \
     --subscribe battery system_woke power_source_change
