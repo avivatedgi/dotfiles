@@ -221,3 +221,22 @@ eval "$(zoxide init zsh)"
 # Work-related zsh config
 [ -f $HOME/.zshrc.work ] && source $HOME/.zshrc.work
 
+# ─────────────────────────────────────
+# Auto-start tmux (must be at the end)
+# ─────────────────────────────────────
+# Only auto-start if:
+# - tmux is installed
+# - not already inside tmux
+# - running in an interactive shell
+# - terminal is Alacritty
+if command -v tmux &> /dev/null && \
+   [[ -z "$TMUX" ]] && \
+   [[ $- == *i* ]] && \
+   [[ "$TERM_PROGRAM" == "Alacritty" || -n "$ALACRITTY_WINDOW_ID" ]]; then
+  # Try to attach to existing session, or create new one named "main"
+  if tmux has-session -t main 2>/dev/null; then
+    exec tmux attach -t main
+  else
+    exec tmux new -s main
+  fi
+fi
