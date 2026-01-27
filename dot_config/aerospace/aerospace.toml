@@ -77,10 +77,12 @@ alt-comma = 'layout accordion horizontal vertical'
 alt-shift-space = 'layout floating tiling'  # i3-style float toggle
 
 # Focus windows (vim keys)
-alt-h = 'focus left'
-alt-j = 'focus down'
-alt-k = 'focus up'
-alt-l = 'focus right'
+# --boundaries all-monitors-outer-frame: crosses to other monitors at edges
+# --boundaries-action wrap-around-all-monitors: wraps from last monitor to first
+alt-h = 'focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors left'
+alt-j = 'focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors down'
+alt-k = 'focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors up'
+alt-l = 'focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors right'
 
 # Move windows within workspace tree
 alt-shift-h = 'move left'
@@ -88,17 +90,11 @@ alt-shift-j = 'move down'
 alt-shift-k = 'move up'
 alt-shift-l = 'move right'
 
-# Focus monitor (3-monitor friendly)
-alt-ctrl-h = 'focus-monitor --wrap-around left'
-alt-ctrl-l = 'focus-monitor --wrap-around right'
-alt-ctrl-j = 'focus-monitor --wrap-around down'
-alt-ctrl-k = 'focus-monitor --wrap-around up'  # focus-monitor supports directions/next/prev/patterns
-
 # Move focused window to another monitor (and follow it)
-alt-ctrl-shift-h = 'move-node-to-monitor --wrap-around --focus-follows-window left'
-alt-ctrl-shift-l = 'move-node-to-monitor --wrap-around --focus-follows-window right'
-alt-ctrl-shift-j = 'move-node-to-monitor --wrap-around --focus-follows-window down'
-alt-ctrl-shift-k = 'move-node-to-monitor --wrap-around --focus-follows-window up'
+alt-ctrl-h = 'move-node-to-monitor --wrap-around --focus-follows-window left'
+alt-ctrl-l = 'move-node-to-monitor --wrap-around --focus-follows-window right'
+alt-ctrl-j = 'move-node-to-monitor --wrap-around --focus-follows-window down'
+alt-ctrl-k = 'move-node-to-monitor --wrap-around --focus-follows-window up'
 
 # Switch workspace SET (left + center monitors only)
 # Right monitor stays on 1-chat (Slack is sticky there)
