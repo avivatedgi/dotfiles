@@ -23,14 +23,16 @@ AeroSpace is a tiling window manager for macOS. This config uses a 3-monitor set
 
 ## Window Focus (Vim-style)
 
+Focus crosses monitors at edges and wraps around!
+
 | Shortcut | Action |
 |----------|--------|
-| `Alt + h` | Focus window left |
-| `Alt + j` | Focus window down |
-| `Alt + k` | Focus window up |
-| `Alt + l` | Focus window right |
+| `Alt + h` | Focus left (crosses monitors, wraps around) |
+| `Alt + j` | Focus down (crosses monitors, wraps around) |
+| `Alt + k` | Focus up (crosses monitors, wraps around) |
+| `Alt + l` | Focus right (crosses monitors, wraps around) |
 
-## Move Windows
+## Move Windows (Within Workspace)
 
 | Shortcut | Action |
 |----------|--------|
@@ -38,6 +40,15 @@ AeroSpace is a tiling window manager for macOS. This config uses a 3-monitor set
 | `Alt + Shift + j` | Move window down |
 | `Alt + Shift + k` | Move window up |
 | `Alt + Shift + l` | Move window right |
+
+## Move Windows to Another Monitor
+
+| Shortcut | Action |
+|----------|--------|
+| `Alt + Ctrl + h` | Move window to monitor left (wraps) |
+| `Alt + Ctrl + j` | Move window to monitor down (wraps) |
+| `Alt + Ctrl + k` | Move window to monitor up (wraps) |
+| `Alt + Ctrl + l` | Move window to monitor right (wraps) |
 
 ## Workspaces
 
@@ -48,18 +59,8 @@ AeroSpace is a tiling window manager for macOS. This config uses a 3-monitor set
 | `Alt + 3` | Switch to workspace set 3 |
 | `Alt + 4` | Switch to workspace set 4 |
 | `Alt + 5` | Switch to workspace set 5 |
-| `Ctrl + Alt + 1-5` | Move window to workspace 1-5 |
+| `Ctrl + Alt + 1-5` | Move window to workspace 1-5 (dev) |
 | `Alt + Tab` | Toggle last workspace |
-
-## Monitors
-
-| Shortcut | Action |
-|----------|--------|
-| `Alt + Ctrl + h` | Focus monitor left |
-| `Alt + Ctrl + l` | Focus monitor right |
-| `Alt + Ctrl + j` | Focus monitor down |
-| `Alt + Ctrl + k` | Focus monitor up |
-| `Alt + Ctrl + Shift + h/j/k/l` | Move window to monitor |
 
 ## Layout & Window Management
 
@@ -134,11 +135,13 @@ When these apps open, they automatically move to:
 
 ## Quick Tips
 
-1. **Switch workspace sets** with `Alt + 1-5` (left & center monitors change, right stays on Slack)
-2. **Move windows** with `Alt + Shift + h/j/k/l`
-3. **Resize windows** by entering resize mode with `Alt + r`
-4. **Launch apps** quickly with `Alt + Space` then the app key
-5. **Reload config** after editing: `Alt + Shift + ;` then `r`
+1. **Focus across monitors** with `Alt + h/j/k/l` — wraps around at edges!
+2. **Switch workspace sets** with `Alt + 1-5` (left & center change, right stays on Slack)
+3. **Move windows within workspace** with `Alt + Shift + h/j/k/l`
+4. **Move windows to another monitor** with `Alt + Ctrl + h/j/k/l`
+5. **Resize windows** by entering resize mode with `Alt + r`
+6. **Launch apps** quickly with `Alt + Space` then the app key
+7. **Reload config** after editing: `Alt + Shift + ;` then `r`
 
 ---
 
