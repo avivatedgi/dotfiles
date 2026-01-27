@@ -7,7 +7,7 @@ start-at-login = true
 # so it won't be run twice on AeroSpace restart
 after-startup-command = [
     'exec-and-forget sketchybar',
-    'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0'
+    'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0',
 ]
 
 # Optional: if you like mouse following focus between monitors
@@ -21,8 +21,12 @@ inner.horizontal = 8
 inner.vertical = 8
 outer.left = 8
 outer.right = 8
-outer.top = 40  # Space for Sketchybar (32px) + padding. On laptop, menu bar already reserves space so this adds extra margin
 outer.bottom = 8
+
+# Per-monitor top gaps:
+# - Built-in display (laptop): small gap, menu bar already has space
+# - External monitors: larger gap for Sketchybar (32px height + padding)
+outer.top = [{ monitor."built-in" = 8 }, 40]
 
 # --- MONITOR ASSIGNMENTS ------------------------------------------------------
 # Monitor sequence numbers are left-to-right, 1-based.
@@ -74,7 +78,7 @@ run = 'move-node-to-workspace 1-chat'
 # Layout toggles
 alt-slash = 'layout tiles horizontal vertical'
 alt-comma = 'layout accordion horizontal vertical'
-alt-shift-space = 'layout floating tiling'  # i3-style float toggle
+alt-shift-space = 'layout floating tiling'         # i3-style float toggle
 
 # Focus windows (vim keys)
 # --boundaries all-monitors-outer-frame: crosses to other monitors at edges
@@ -150,17 +154,17 @@ shift-l = 'resize width +100'
 shift-j = 'resize height +100'
 shift-k = 'resize height -100'
 esc = 'mode main'
-enter = 'mode main'  # resize supports width/height/smart, etc.
+enter = 'mode main'            # resize supports width/height/smart, etc.
 
 
 # --- LAUNCH MODE --------------------------------------------------------------
 # A simple "app launcher" that also jumps you to the right workspace.
 # exec-and-forget runs a bash snippet (config-only)
 [mode.launch.binding]
-b = ['workspace 1-web',  'exec-and-forget open -a "Google Chrome"', 'mode main']
-c = ['workspace 1-dev',  'exec-and-forget open -a "Cursor"',       'mode main']
-s = ['workspace 1-chat', 'exec-and-forget open -a "Slack"',        'mode main']
-t = ['workspace 1-dev',  'exec-and-forget open -a "Alacritty"',    'mode main']
+b = ['workspace 1-web', 'exec-and-forget open -a "Google Chrome"', 'mode main']
+c = ['workspace 1-dev', 'exec-and-forget open -a "Cursor"', 'mode main']
+s = ['workspace 1-chat', 'exec-and-forget open -a "Slack"', 'mode main']
+t = ['workspace 1-dev', 'exec-and-forget open -a "Alacritty"', 'mode main']
 esc = 'mode main'
 enter = 'mode main'
 
@@ -168,6 +172,6 @@ enter = 'mode main'
 # --- SERVICE MODE -------------------------------------------------------------
 [mode.service.binding]
 r = ['reload-config', 'mode main']
-t = ['enable toggle', 'mode main']   # temporarily disable/enable tiling
+t = ['enable toggle', 'mode main'] # temporarily disable/enable tiling
 esc = 'mode main'
 enter = 'mode main'
