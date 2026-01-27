@@ -1,0 +1,19 @@
+#!/usr/bin/env zsh
+
+# ┌─────────────────────────────────────┐
+# │   Sketchybar Config with AeroSpace │
+# │   Auto-detects laptop vs desktop   │
+# └─────────────────────────────────────┘
+
+SKETCHYBAR_CONFIG="$HOME/.config/sketchybar"
+
+# Detect if the main display is the built-in laptop screen
+# Since the notch is only on the laptop, if the main display is "Built-in",
+# then we're using the laptop screen as primary
+MAIN_DISPLAY=$(system_profiler SPDisplaysDataType | grep -B 3 'Main Display:' | awk '/Display Type/ {print $3}')
+
+if [[ $MAIN_DISPLAY = "Built-in" ]]; then
+    source "$SKETCHYBAR_CONFIG/sketchybarrc-laptop"
+else
+    source "$SKETCHYBAR_CONFIG/sketchybarrc-desktop"
+fi

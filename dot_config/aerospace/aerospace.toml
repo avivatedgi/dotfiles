@@ -2,6 +2,16 @@
 config-version = 2
 start-at-login = true
 
+# Run Sketchybar together with AeroSpace
+# sketchybar has a built-in detection of already running process,
+# so it won't be run twice on AeroSpace restart
+after-startup-command = ['exec-and-forget sketchybar']
+
+# Notify Sketchybar about workspace change
+exec-on-workspace-change = ['/bin/bash', '-c',
+    'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
+]
+
 # Optional: if you like mouse following focus between monitors
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 
@@ -13,7 +23,7 @@ inner.horizontal = 8
 inner.vertical = 8
 outer.left = 8
 outer.right = 8
-outer.top = 8
+outer.top = 40  # Space for Sketchybar (32px) + padding. On laptop, menu bar already reserves space so this adds extra margin
 outer.bottom = 8
 
 # --- MONITOR ASSIGNMENTS ------------------------------------------------------
