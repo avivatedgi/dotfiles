@@ -115,10 +115,12 @@ ctrl-alt-3 = 'move-node-to-workspace 3-dev'
 ctrl-alt-4 = 'move-node-to-workspace 4-dev'
 ctrl-alt-5 = 'move-node-to-workspace 5-dev'
 
-# Add your own custom bindings below:
-# alt-w = 'workspace ...'
-# alt-e = 'workspace ...'
-# alt-s = 'workspace ...'
+# Reserved for tmux (not bound in AeroSpace, passes through to terminal):
+# alt-e = tmux split horizontal (side by side)
+# alt-shift-e = tmux split vertical (stacked)
+# alt-o = tmux sesh session picker
+# alt-w = tmux close pane
+# alt-arrows = tmux navigate between panes
 
 # Back-and-forth
 alt-tab = 'workspace-back-and-forth'

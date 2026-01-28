@@ -27,8 +27,11 @@ bind -n Home send-key C-a
 # ─────────────────────────────────────
 #         SPLIT PANES
 # ─────────────────────────────────────
-# NOTE: Changed from Alt+e/o to avoid AeroSpace conflicts
-# Splits windows with ALT+\ (vertical) / ALT+- (horizontal)
+# Alt+e = split horizontal (side by side), Alt+Shift+E = split vertical (stacked)
+# Alt+\ and Alt+- also work as alternatives
+# Note: Alt+o is reserved for sesh session picker (see below)
+bind -n M-e if-shell "$is_nvim" "send-keys M-e" 'split-window -h -c "#{pane_current_path}"'
+bind -n M-E if-shell "$is_nvim" "send-keys M-E" 'split-window -v -c "#{pane_current_path}"'
 bind -n M-'\' if-shell "$is_nvim" "send-keys M-\\\\" 'split-window -h -c "#{pane_current_path}"'
 bind -n M-'-' if-shell "$is_nvim" "send-keys M--" 'split-window -v -c "#{pane_current_path}"'
 
@@ -38,15 +41,20 @@ bind -T prefix '-' split-window -v -c "#{pane_current_path}"
 bind -T prefix '|' split-window -h -c "#{pane_current_path}"
 bind -T prefix '_' split-window -v -c "#{pane_current_path}"
 
-# Close pane with ALT+x (changed from Alt+w to avoid AeroSpace conflict)
-bind -n M-x if-shell "$is_nvim" "send-keys M-x" "kill-pane"
-bind -n M-X kill-window
+# Close pane with ALT+w, close window with ALT+Shift+W
+bind -n M-w if-shell "$is_nvim" "send-keys M-w" "kill-pane"
+bind -n M-W kill-window
 
 # ─────────────────────────────────────
 #         PANE NAVIGATION
 # ─────────────────────────────────────
-# NOTE: Using only Ctrl+hjkl to avoid AeroSpace Alt+hjkl conflicts
-# Move around panes with Ctrl+hjkl (vim-style)
+# Move around panes with Alt+arrows (since Alt+hjkl is used by AeroSpace)
+bind -n M-Left select-pane -L
+bind -n M-Down select-pane -D
+bind -n M-Up select-pane -U
+bind -n M-Right select-pane -R
+
+# Ctrl+hjkl also works (vim-style, nvim-aware)
 bind -n C-h if-shell "$is_nvim" 'send-keys C-h' 'select-pane -L'
 bind -n C-j if-shell "$is_nvim || $is_fzf" 'send-keys C-j' 'select-pane -D'
 bind -n C-k if-shell "$is_nvim || $is_fzf" 'send-keys C-k' 'select-pane -U'
@@ -206,8 +214,16 @@ bind -n C-u if-shell "$is_nvim || $is_vim || $is_less" "send-keys C-u" 'copy-mod
 # Copy word with double click
 bind -n DoubleClick1Pane if-shell "$is_nvim" "" 'copy-mode -M; send-keys -X select-word; run-shell "sleep 0.2"; send-keys -X copy-pipe-and-cancel'
 
-# Don't finish copy when mouse drag ends
-unbind -T copy-mode-vi MouseDragEnd1Pane
+# Triple click to select line
+bind -n TripleClick1Pane if-shell "$is_nvim" "" 'copy-mode -M; send-keys -X select-line; run-shell "sleep 0.2"; send-keys -X copy-pipe-and-cancel'
+
+# Click and drag to select text, copy on mouse release
+bind -n MouseDrag1Pane if-shell "$is_nvim" "" 'copy-mode -M'
+bind -T copy-mode-vi MouseDrag1Pane send-keys -X begin-selection
+bind -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel 'pbcopy'
+
+# Right click to paste
+bind -n MouseDown3Pane paste-buffer
 
 # ─────────────────────────────────────
 #         MISC BINDS
