@@ -272,6 +272,12 @@ key = "Back"
 mods = "Command"
 chars = "\u0015"
 
+# Ctrl + Backspace: Delete word backward (like Ctrl+W)
+[[keyboard.bindings]]
+key = "Back"
+mods = "Control"
+chars = "\u0017"
+
 [general]
 # ┌─────────────────────────────────────┐
 # │  Alacritty Configuration (macOS)   │
