@@ -81,6 +81,9 @@ zinit wait lucid atload"zicompinit; zicdreplay" blockf for \
 zinit ice wait lucid
 zinit light hlissner/zsh-autopair
 
+zinit ice wait lucid
+zinit light zsh-users/zsh-syntax-highlighting
+
 # Key bindings - Fix HOME/END keys and ensure emacs mode
 bindkey -e  # Explicitly set emacs mode (default, but ensures it's set)
 
