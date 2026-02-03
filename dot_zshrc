@@ -104,8 +104,8 @@ bindkey '\e[6~'   history-beginning-search-forward   # PAGE DOWN
 # Aliases
 alias vim="nvim"
 alias sftp="with-readline sftp"
-alias pwdc='echo \"$(pwd)\" | tr -d "\n" | toclip'
-alias pwdcd='echo "cd \"$(pwd)\"" | toclip'
+alias pwdc='echo \"$(pwd)\" | tr -d "\n" | pbcopy'
+alias pwdcd='echo "cd \"$(pwd)\"" | pbcopy'
 alias ga='git add'
 alias gc='git commit'
 alias gcm='git commit -m'
