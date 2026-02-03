@@ -32,25 +32,25 @@ outer.top = [{ monitor."built-in" = 8 }, 40]
 # Monitor sequence numbers are left-to-right, 1-based.
 # Adjust if your left/center/right monitors are not 1/2/3.
 [workspace-to-monitor-force-assignment]
-"1-web" = 1
+"1-chat" = 1
 "1-dev" = 2
-"1-chat" = 3
+"1-web" = 3
 
-"2-web" = 1
+"2-chat" = 1
 "2-dev" = 2
-"2-chat" = 3
+"2-web" = 3
 
-"3-web" = 1
+"3-chat" = 1
 "3-dev" = 2
-"3-chat" = 3
+"3-web" = 3
 
-"4-web" = 1
+"4-chat" = 1
 "4-dev" = 2
-"4-chat" = 3
+"4-web" = 3
 
-"5-web" = 1
+"5-chat" = 1
 "5-dev" = 2
-"5-chat" = 3
+"5-web" = 3
 
 
 # --- APP → WORKSPACE RULES ----------------------------------------------------
