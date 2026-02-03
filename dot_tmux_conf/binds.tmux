@@ -138,9 +138,35 @@ bind -T prefix 8 select-window -t :=8
 bind -T prefix 9 select-window -t :=9
 bind -T prefix 0 select-window -t :=10
 
-# Last window with Ctrl+Tab or Alt+` (no AeroSpace conflict)
-bind -n C-Tab last-window
+# Window navigation with Ctrl+Tab/Ctrl+Shift+Tab
+# Using user-keys to match Alacritty's escape sequences exactly
+set -s user-keys[0] "\e[27;5;9~"
+bind -n User0 next-window
+set -s user-keys[10] "\e[27;6;9~"
+bind -n User10 select-window -p
+
+# Last window with Alt+` (no AeroSpace conflict)
 bind -n M-` last-window
+
+# Ctrl+[1-9] for direct window selection
+set -s user-keys[1] "\e[49;5u"
+set -s user-keys[2] "\e[50;5u"
+set -s user-keys[3] "\e[51;5u"
+set -s user-keys[4] "\e[52;5u"
+set -s user-keys[5] "\e[53;5u"
+set -s user-keys[6] "\e[54;5u"
+set -s user-keys[7] "\e[55;5u"
+set -s user-keys[8] "\e[56;5u"
+set -s user-keys[9] "\e[57;5u"
+bind -n User1 select-window -t :=1
+bind -n User2 select-window -t :=2
+bind -n User3 select-window -t :=3
+bind -n User4 select-window -t :=4
+bind -n User5 select-window -t :=5
+bind -n User6 select-window -t :=6
+bind -n User7 select-window -t :=7
+bind -n User8 select-window -t :=8
+bind -n User9 select-window -t :=9
 
 # Copy-mode window selection
 bind -T copy-mode-vi M-6 select-window -t :=6
@@ -148,7 +174,17 @@ bind -T copy-mode-vi M-7 select-window -t :=7
 bind -T copy-mode-vi M-8 select-window -t :=8
 bind -T copy-mode-vi M-9 select-window -t :=9
 bind -T copy-mode-vi M-0 select-window -t :=10
-bind -T copy-mode-vi C-Tab last-window
+bind -T copy-mode-vi User0 next-window
+bind -T copy-mode-vi User10 select-window -p
+bind -T copy-mode-vi User1 select-window -t :=1
+bind -T copy-mode-vi User2 select-window -t :=2
+bind -T copy-mode-vi User3 select-window -t :=3
+bind -T copy-mode-vi User4 select-window -t :=4
+bind -T copy-mode-vi User5 select-window -t :=5
+bind -T copy-mode-vi User6 select-window -t :=6
+bind -T copy-mode-vi User7 select-window -t :=7
+bind -T copy-mode-vi User8 select-window -t :=8
+bind -T copy-mode-vi User9 select-window -t :=9
 
 # Swap windows (prefix mode only to avoid conflicts)
 bind -T prefix ! swap-window -d -t :=1

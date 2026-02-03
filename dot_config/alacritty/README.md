@@ -191,7 +191,9 @@ Or use prefix mode:
 | `Alt + ]` | Next window |
 | `Alt + {` | Move window left |
 | `Alt + }` | Move window right |
-| `Ctrl + Tab` | Last window (toggle) |
+| `Ctrl + Tab` | Next window |
+| `Ctrl + Shift + Tab` | Previous window |
+| `Ctrl + 1-9` | Switch to window 1-9 |
 
 ### Window Navigation (Alternatives)
 
