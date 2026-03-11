@@ -1,0 +1,20 @@
+[workspace-to-monitor-force-assignment]
+"1-chat" = 'built-in'
+"1-dev" = 'secondary'
+"1-web" = 'secondary'
+
+"2-chat" = 'built-in'
+"2-dev" = 'secondary'
+"2-web" = 'secondary'
+
+"3-chat" = 'built-in'
+"3-dev" = 'secondary'
+"3-web" = 'secondary'
+
+"4-chat" = 'built-in'
+"4-dev" = 'secondary'
+"4-web" = 'secondary'
+
+"5-chat" = 'built-in'
+"5-dev" = 'secondary'
+"5-web" = 'secondary'

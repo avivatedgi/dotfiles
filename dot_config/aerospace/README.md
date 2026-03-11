@@ -2,9 +2,13 @@
 
 > **Tip:** Press `Alt + ?` anytime to open this cheatsheet!
 
-AeroSpace is a tiling window manager for macOS. This config uses a 3-monitor setup with workspace sets.
+AeroSpace is a tiling window manager for macOS. This config supports two monitor
+profiles — **office** (3 monitors) and **home** (laptop + 1 external) — that are
+detected and applied automatically on startup.
 
-## Monitor Layout
+## Monitor Profiles
+
+### Office (3 monitors)
 
 ```
 ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐
@@ -17,7 +21,36 @@ AeroSpace is a tiling window manager for macOS. This config uses a 3-monitor set
 └─────────────────┘  └─────────────────┘  └─────────────────┘
 ```
 
-**Note:** Right monitor stays on `1-chat` (Slack is sticky there)
+`Alt + 1-5` switches both the left and center monitors together.
+
+### Home (laptop + external)
+
+```
+┌─────────────────┐  ┌─────────────────┐
+│   External      │  │   Built-in      │
+│   (secondary)   │  │   (laptop)      │
+│                 │  │                 │
+│   X-dev / X-web │  │   1-chat        │
+│   (main work)   │  │   (Slack)       │
+│                 │  │   ← STICKY      │
+└─────────────────┘  └─────────────────┘
+```
+
+`Alt + 1-5` switches the workspace on the external monitor only.
+
+---
+
+## Switching Profiles
+
+Profiles are detected **automatically** on AeroSpace startup based on the number
+of connected monitors (≤2 → home, ≥3 → office).
+
+To force a profile manually:
+
+```bash
+~/.config/aerospace/generate-config.sh home
+~/.config/aerospace/generate-config.sh office
+```
 
 ---
 
@@ -125,30 +158,43 @@ Focus crosses monitors at edges and wraps around!
 
 When these apps open, they automatically move to:
 
-| App | Workspace | Monitor |
-|-----|-----------|---------|
-| Chrome | 1-web | Left |
-| Cursor | 1-dev | Center |
-| Slack | 1-chat | Right |
+| App | Workspace |
+|-----|-----------|
+| Chrome | 1-web |
+| Cursor | 1-dev |
+| Slack | 1-chat |
+
+The actual monitor depends on the active profile.
 
 ---
 
 ## Quick Tips
 
 1. **Focus across monitors** with `Alt + h/j/k/l` — wraps around at edges!
-2. **Switch workspace sets** with `Alt + 1-5` (left & center change, right stays on Slack)
+2. **Switch workspace sets** with `Alt + 1-5`
 3. **Move windows within workspace** with `Alt + Shift + h/j/k/l`
 4. **Move windows to another monitor** with `Alt + Ctrl + h/j/k/l`
 5. **Resize windows** by entering resize mode with `Alt + r`
 6. **Launch apps** quickly with `Alt + Space` then the app key
 7. **Reload config** after editing: `Alt + Shift + ;` then `r`
+8. **Switch profile manually**: `~/.config/aerospace/generate-config.sh home|office`
 
 ---
 
-## Config Location
+## Config Files
 
 ```
-~/.config/aerospace/aerospace.toml
+~/.config/aerospace/
+  aerospace.toml              ← generated (do not edit)
+  aerospace-base.toml         ← shared config (edit this)
+  profiles/
+    home/
+      monitors.toml           ← home monitor assignments
+      workspace-bindings.toml ← home Alt+N bindings
+    office/
+      monitors.toml           ← office monitor assignments
+      workspace-bindings.toml ← office Alt+N bindings
+  generate-config.sh          ← assembles base + profile → aerospace.toml
 ```
 
 ## Useful Commands
@@ -156,6 +202,13 @@ When these apps open, they automatically move to:
 ```bash
 # Reload config
 aerospace reload-config
+
+# Regenerate config for current monitor setup
+~/.config/aerospace/generate-config.sh
+
+# Force a specific profile
+~/.config/aerospace/generate-config.sh home
+~/.config/aerospace/generate-config.sh office
 
 # List all apps (to find bundle IDs)
 aerospace list-apps

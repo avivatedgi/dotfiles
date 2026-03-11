@@ -1,16 +1,14 @@
-# ~/.aerospace.toml
+# AeroSpace base config — profile-specific sections injected by generate-config.sh
+# Edit this file (and profiles/) instead of aerospace.toml directly.
 config-version = 2
 start-at-login = true
 
-# Run Sketchybar together with AeroSpace
-# sketchybar has a built-in detection of already running process,
-# so it won't be run twice on AeroSpace restart
 after-startup-command = [
     'exec-and-forget sketchybar',
     'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0',
+    'exec-and-forget ~/.config/aerospace/generate-config.sh',
 ]
 
-# Optional: if you like mouse following focus between monitors
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 
 [key-mapping]
@@ -22,93 +20,50 @@ inner.vertical = 8
 outer.left = 8
 outer.right = 8
 outer.bottom = 8
-
-# Per-monitor top gaps:
-# - Built-in display (laptop): small gap, menu bar already has space
-# - External monitors: larger gap for Sketchybar (32px height + padding)
 outer.top = [{ monitor."built-in" = 8 }, 40]
 
-# --- MONITOR ASSIGNMENTS ------------------------------------------------------
-# Monitor sequence numbers are left-to-right, 1-based.
-# Adjust if your left/center/right monitors are not 1/2/3.
-[workspace-to-monitor-force-assignment]
-"1-chat" = 1
-"1-dev" = 2
-"1-web" = 3
-
-"2-chat" = 1
-"2-dev" = 2
-"2-web" = 3
-
-"3-chat" = 1
-"3-dev" = 2
-"3-web" = 3
-
-"4-chat" = 1
-"4-dev" = 2
-"4-web" = 3
-
-"5-chat" = 1
-"5-dev" = 2
-"5-web" = 3
+# --- MONITOR ASSIGNMENTS (injected from profiles/) -------------------------
+# @MONITORS@
 
 
-# --- APP → WORKSPACE RULES ----------------------------------------------------
-# You can discover app bundle IDs via: `aerospace list-apps` or `mdls ...`.
-
-# Chrome -> left (coding set)
+# --- APP → WORKSPACE RULES ------------------------------------------------
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
 run = 'move-node-to-workspace 1-web'
 
-# Cursor -> center (coding set)
-# (Cursor's bundle id can vary; name-match is often more robust. You can replace with if.app-id once confirmed.)
 [[on-window-detected]]
 if.app-name-regex-substring = 'cursor'
 run = 'move-node-to-workspace 1-dev'
 
-# Slack -> right (coding set)
 [[on-window-detected]]
 if.app-id = 'com.tinyspeck.slackmacgap'
 run = 'move-node-to-workspace 1-chat'
 
 
-# --- KEYBINDINGS --------------------------------------------------------------
+# --- KEYBINDINGS ----------------------------------------------------------
 [mode.main.binding]
-# Layout toggles
 alt-slash = 'layout tiles horizontal vertical'
 alt-comma = 'layout accordion horizontal vertical'
-alt-shift-space = 'layout floating tiling'         # i3-style float toggle
+alt-shift-space = 'layout floating tiling'
 
-# Focus windows (vim keys)
-# --boundaries all-monitors-outer-frame: crosses to other monitors at edges
-# --boundaries-action wrap-around-all-monitors: wraps from last monitor to first
 alt-h = 'focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors left'
 alt-j = 'focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors down'
 alt-k = 'focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors up'
 alt-l = 'focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors right'
 
-# Move windows within workspace tree
 alt-shift-h = 'move left'
 alt-shift-j = 'move down'
 alt-shift-k = 'move up'
 alt-shift-l = 'move right'
 
-# Move focused window to another monitor (and follow it)
 alt-ctrl-h = 'move-node-to-monitor --wrap-around --focus-follows-window left'
 alt-ctrl-l = 'move-node-to-monitor --wrap-around --focus-follows-window right'
 alt-ctrl-j = 'move-node-to-monitor --wrap-around --focus-follows-window down'
 alt-ctrl-k = 'move-node-to-monitor --wrap-around --focus-follows-window up'
 
-# Switch workspace SET (left + center monitors only)
-# Right monitor stays on 1-chat (Slack is sticky there)
-alt-1 = ['workspace 1-web', 'workspace 1-dev']
-alt-2 = ['workspace 2-web', 'workspace 2-dev']
-alt-3 = ['workspace 3-web', 'workspace 3-dev']
-alt-4 = ['workspace 4-web', 'workspace 4-dev']
-alt-5 = ['workspace 5-web', 'workspace 5-dev']
+# --- WORKSPACE SWITCHING (injected from profiles/) ------------------------
+# @WORKSPACE_BINDINGS@
 
-# Move window to workspace (use ctrl+alt+number)
 ctrl-alt-1 = 'move-node-to-workspace 1-dev'
 ctrl-alt-2 = 'move-node-to-workspace 2-dev'
 ctrl-alt-3 = 'move-node-to-workspace 3-dev'
@@ -122,30 +77,19 @@ ctrl-alt-5 = 'move-node-to-workspace 5-dev'
 # alt-w = tmux close pane
 # alt-arrows = tmux navigate between panes
 
-# Back-and-forth
 alt-tab = 'workspace-back-and-forth'
-
-# Fullscreen (AeroSpace fullscreen, not macOS native fullscreen)
 alt-f = 'fullscreen'
-
-# Reset/cleanup helpers
 alt-b = 'balance-sizes'
 alt-shift-b = 'flatten-workspace-tree'
-
-# Modes
 alt-r = 'mode resize'
 alt-space = 'mode launch'
 alt-shift-semicolon = 'mode service'
-
-# Optional close (macOS cmd+w also works)
 alt-q = 'close'
 
-# Show cheatsheet (Alt + ?) - opens with glow in pager mode (install: brew install glow)
-# Press q to exit the preview
 alt-shift-slash = 'exec-and-forget alacritty -e glow -p ~/.config/aerospace/README.md'
 
 
-# --- RESIZE MODE --------------------------------------------------------------
+# --- RESIZE MODE ----------------------------------------------------------
 [mode.resize.binding]
 h = 'resize width -50'
 l = 'resize width +50'
@@ -156,12 +100,10 @@ shift-l = 'resize width +100'
 shift-j = 'resize height +100'
 shift-k = 'resize height -100'
 esc = 'mode main'
-enter = 'mode main'            # resize supports width/height/smart, etc.
+enter = 'mode main'
 
 
-# --- LAUNCH MODE --------------------------------------------------------------
-# A simple "app launcher" that also jumps you to the right workspace.
-# exec-and-forget runs a bash snippet (config-only)
+# --- LAUNCH MODE ----------------------------------------------------------
 [mode.launch.binding]
 b = ['workspace 1-web', 'exec-and-forget open -a "Google Chrome"', 'mode main']
 c = ['workspace 1-dev', 'exec-and-forget open -a "Cursor"', 'mode main']
@@ -171,9 +113,9 @@ esc = 'mode main'
 enter = 'mode main'
 
 
-# --- SERVICE MODE -------------------------------------------------------------
+# --- SERVICE MODE ---------------------------------------------------------
 [mode.service.binding]
 r = ['reload-config', 'mode main']
-t = ['enable toggle', 'mode main'] # temporarily disable/enable tiling
+t = ['enable toggle', 'mode main']
 esc = 'mode main'
 enter = 'mode main'
