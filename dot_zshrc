@@ -170,6 +170,18 @@ function klogs() {
   kubectl logs -n "$namespace" -f "$pod" "$@"
 }
 
+function aero() {
+  local profile="${1:-}"
+  if [[ -z "$profile" ]]; then
+    echo "Usage: aero <home|office>"
+    echo "Current config:"
+    rg '^\[workspace-to-monitor' ~/.config/aerospace/aerospace.toml -A1 2>/dev/null \
+      | rg -q 'built-in' && echo "  → home" || echo "  → office"
+    return 0
+  fi
+  ~/.config/aerospace/generate-config.sh "$profile"
+}
+
 # Path Variables
 export PATH="/opt/homebrew/bin/":"$PATH"
 export PATH="$PATH":"$HOME/go/bin"
