@@ -236,7 +236,7 @@ source /Users/aviv/.config/op/plugins.sh
 eval "$(zoxide init zsh)"
 
 # Work-related zsh config
-[ -f $HOME/.zshrc.work ] && source $HOME/.zshrc.work
+[ -f $HOME/.zsh.work/.zshrc ] && source $HOME/.zsh.work/.zshrc
 
 # ─────────────────────────────────────
 # Auto-start tmux (must be at the end)
