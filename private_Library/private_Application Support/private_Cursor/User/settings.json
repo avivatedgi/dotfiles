@@ -11,7 +11,7 @@
 
   // Python Configuration
   "[python]": {
-    "editor.defaultFormatter": "charliermarsh.ruff"
+    "editor.defaultFormatter": "charliermarsh.ruff",
   },
 
   // Go Configuration
@@ -20,21 +20,18 @@
   "go.lintTool": "golangci-lint",
   "gopls": {
     "formatting.gofumpt": true,
-    "ui.semanticTokens": true
-  },
-  "yaml.schemas": {
-    "file:///Users/aviv/.cursor/extensions/atlassian.atlascode-4.0.13-universal/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+    "ui.semanticTokens": true,
   },
   "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
   "git.confirmSync": false,
   "explorer.confirmDragAndDrop": false,
   "terminal.integrated.profiles.osx": {
     "zsh": {
       "path": "/bin/zsh",
-      "args": ["-l"]
-    }
+      "args": ["-l"],
+    },
   },
   "terminal.integrated.defaultProfile.osx": "zsh",
   "terminal.integrated.inheritEnv": true,
@@ -43,5 +40,6 @@
   "diffEditor.ignoreTrimWhitespace": false,
   "gitlens.ai.model": "gitkraken",
   "gitlens.ai.gitkraken.model": "gemini:gemini-2.0-flash",
-  "accessibility.signalOptions.volume": 0
+  "accessibility.signalOptions.volume": 0,
+  "gitlens.currentLine.enabled": false,
 }
