@@ -12,7 +12,7 @@ A comprehensive tmux configuration optimized for macOS with AeroSpace window man
   ```
 
 ### Recommended
-- **sesh** - Session manager (`brew install joshmedeski/sesh/sesh`)
+- **sesh** - Session manager (`brew install sesh`)
 - **fzf** - Fuzzy finder (`brew install fzf`)
 - **fd** - Fast file finder (`brew install fd`)
 
